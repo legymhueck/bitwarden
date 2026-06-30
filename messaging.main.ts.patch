@@ -1,0 +1,13 @@
+diff --git a/apps/desktop/src/main/messaging.main.ts b/apps/desktop/src/main/messaging.main.ts
+index 9d180d5bb36..a169c53dee8 100644
+--- a/apps/desktop/src/main/messaging.main.ts
++++ b/apps/desktop/src/main/messaging.main.ts
+@@ -140,7 +140,7 @@ export class MessagingMain {
+   Version=${app.getVersion()}
+   Name=Bitwarden
+   Comment=Bitwarden startup script
+-  Exec=${app.getPath("exe")} ${AUTOSTART_FLAG}
++  Exec=bitwarden-desktop ${AUTOSTART_FLAG}
+   StartupNotify=false
+   Terminal=false`;
+ 

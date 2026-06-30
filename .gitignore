@@ -1,0 +1,14 @@
+# Packaging artifacts
+pkg/
+*.pkg.tar.zst
+*.pkg.tar
+
+# Build and dependency output
+src/bitwarden/node_modules/
+src/bitwarden/dist/
+src/bitwarden/.nx/
+src/bitwarden/.turbo/
+src/bitwarden/.cache/
+src/bitwarden/.parcel-cache/
+src/bitwarden/.eslintcache
+src/bitwarden/.pnp.*
