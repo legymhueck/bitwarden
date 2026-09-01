@@ -1,5 +1,5 @@
 diff --git a/apps/desktop/webpack.base.js b/apps/desktop/webpack.base.js
-index c9da84cd2e..fdf70ab19f 100644
+index 69a59f4f8d1..a1a07f4c956 100644
 --- a/apps/desktop/webpack.base.js
 +++ b/apps/desktop/webpack.base.js
 @@ -1,6 +1,5 @@
@@ -9,7 +9,7 @@ index c9da84cd2e..fdf70ab19f 100644
  const HtmlWebpackPlugin = require("html-webpack-plugin");
  const MiniCssExtractPlugin = require("mini-css-extract-plugin");
  const CopyWebpackPlugin = require("copy-webpack-plugin");
-@@ -167,7 +166,7 @@ module.exports.buildConfig = function buildConfig(params) {
+@@ -173,7 +172,7 @@ module.exports.buildConfig = function buildConfig(params) {
    const rendererConfig = {
      name: "renderer",
      mode: NODE_ENV,
@@ -18,7 +18,7 @@ index c9da84cd2e..fdf70ab19f 100644
      target: "web",
      node: {
        __dirname: false,
-@@ -310,9 +309,6 @@ module.exports.buildConfig = function buildConfig(params) {
+@@ -317,9 +316,6 @@ module.exports.buildConfig = function buildConfig(params) {
          filename: "index.html",
          chunks: ["app/vendor", "app/main"],
        }),

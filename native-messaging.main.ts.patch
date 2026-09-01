@@ -1,8 +1,8 @@
 diff --git a/apps/desktop/src/main/native-messaging.main.ts b/apps/desktop/src/main/native-messaging.main.ts
-index 93525164ff..3b13121344 100644
+index 0fb1e75b8b7..5927bf6c2a7 100644
 --- a/apps/desktop/src/main/native-messaging.main.ts
 +++ b/apps/desktop/src/main/native-messaging.main.ts
-@@ -417,26 +417,7 @@ export class NativeMessagingMain {
+@@ -542,26 +542,7 @@ export class NativeMessagingMain {
    }
  
    private binaryPath() {
@@ -26,7 +26,7 @@ index 93525164ff..3b13121344 100644
 -    }
 -
 -    return path.join(path.dirname(this.exePath), `desktop_proxy${ext}`);
-+    return '/usr/lib/bitwarden/desktop_proxy'
++    return "/usr/lib/bitwarden/desktop_proxy";
    }
  
    private homedir() {

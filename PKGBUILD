@@ -3,7 +3,7 @@
 
 pkgname=bitwarden
 pkgver=2026.8.0
-pkgrel=1
+pkgrel=2
 _electronversion=43
 pkgdesc='A secure and free password manager for all of your devices'
 arch=('x86_64')
@@ -20,11 +20,11 @@ source=(bitwarden::git+https://github.com/bitwarden/clients.git#tag=desktop-v$pk
         ${pkgname}.sh
         ${pkgname}.desktop)
 sha512sums=('706a2023b67512e9d07b0710ae27b128b3778cfdf4a9e5643d14e8f676d4a267ec2a791301eb2f631310af505e39144a0ed8a67a4bd85c692190d987a73c40b1'
-            'a32d326bba31335da7cbdccbb67575fd66b03c6156b8760f70b4a3fa89ea995bfd100b24db66672d8d031e73c547b02a00062cb8a6a0a775902a5ed793c84941'
+            'a04cd8bad95e5b8f9f04c9e6b4f4de8b249fa29037d70e9191d150dce4cead95ec0863081415bbd1f0f534657aa41c25eb82386ba5a8e998737325ea84682c7c'
             '0a769e138c54c7600d72e66e832af43bc7157682a995a08ec0c343909fe5b7cae4a7d547507807320f783af8e282ddc16cacec19f66cc5a029cfc6c2e1cc7468'
-            'c7cb11d7ec3807d85a50fe7689eb0c9f8814ca7c562d05195c3f0c8c4f1e7448c9a56ad759c7a2a1b36be5619a858f391142da18a691baf81fcbeac1e2f1f537'
-            'c86d4df374af1b9a25b20f113947b3477e32388beec376a49a24eddd5de7f11ed4735144939c736229b2605cf9949cdd6e6d3c71366656c8352639a293da4965'
-            '65e49fdc025c2795d15a8f4c50c06e61137417b4b26c55365115477a88245b41c474d3f0228d6001d8d759fc2384f282652ce34f7147fbb014efb16cfb32695a'
+            '878b2189b21f1c1d054f57c6096a11dc15a855346c897176575e6ad11db7a24d44176ec94bfa8ab7fb7e1f9b8f60d03ff4c41c5c3dfe062159447dd0e2f674f5'
+            'e32d7b2d2149dc40a5e9be541126066ad04bc91e2e1639b7f9c021ff6f370713b6c555fa007331acdbd46dc02ce951d4644d0236357993fe6d6650d342c155ce'
+            '234672ba976bad52fd8a903d1bd768dc475e40e6414720fe341d65a278cb1053266c41753504b03a5ff9c2788a3ecb200bad7f4319cf2f89aff1f2d97e35b700'
             '00af9f1b0318aed814dfb38ea03bba3af47c80131a184b0ca1835c0ce0a55ebae3058ffea430ff29d720217283feb2c734874bb82a08e4b87223613c314d32dd'
             'ccd3f085f54c627a393c79f257379129af90b9f04bc74c5125efd5c4eadc9a25383ce0e444431140b3cf955987e90c44b514b73a8f34f258122d197fd91c1340')
 
@@ -68,12 +68,14 @@ build() {
 	pushd desktop_native
 	cargo rustc --frozen --release --package desktop_napi --lib --crate-type cdylib
 	cargo rustc --frozen --release --package desktop_proxy --bin desktop_proxy
-	mv -v target/release/*.so napi/desktop_napi.node
+	rm -fv napi/desktop_napi.node
+	cp -v target/release/libdesktop_napi.so napi/desktop_napi.node
 	cargo build --frozen --release --package process_isolation
 	popd
 	npm run build
 	npm run clean:dist
-	mv -v desktop_native/target/release/desktop_proxy build/desktop_proxy
+	rm -fv build/desktop_proxy
+	cp -v desktop_native/target/release/desktop_proxy build/desktop_proxy
 	rm -fv ../../node_modules/argon2/build-tmp-napi-v3/node_gyp_bins/python3
 	fdupes build
 	pushd build
